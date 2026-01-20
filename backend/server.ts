@@ -1,5 +1,10 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = 3001;
@@ -55,6 +60,7 @@ interface TreeNode extends FlatNode {
     children?: TreeNode[];
 }
 
+
 const buildTree = (flatData: FlatNode[]): TreeNode | null => {
     const nodeMap: { [key: string]: TreeNode } = {};
     let root: TreeNode | null = null;
@@ -98,6 +104,11 @@ app.get('/api/graph-data', (req: Request, res: Response) => {
     } else {
         res.status(500).json({ error: "Could not build tree" });
     }
+});
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.get("*", (req: Request, res: Response) => {
+    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
 app.listen(PORT, () => {
