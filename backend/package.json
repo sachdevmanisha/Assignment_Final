@@ -5,7 +5,8 @@
     "main": "server.ts",
     "scripts": {
         "dev": "ts-node server.ts",
-        "start": "node dist/server.js"
+        "start": "node dist/server.js",
+        "build":"tsc"
     },
     "dependencies": {
         "cors": "^2.8.5",

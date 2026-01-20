@@ -1,0 +1,12 @@
+{
+  "name": "project-root",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "start": "echo 'Use backend or frontend specific start commands' && exit 1"
+  }
+}
